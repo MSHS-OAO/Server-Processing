@@ -120,6 +120,7 @@ process_data <- function(access_data){
                  "Visitend.DTTM","Checkout.DTTM")
   
   # Clean up department names (X_..._DEACTIVATED)
+  data.subset$Department <- as.character(data.subset$Department)
   data.subset <- data.subset %>%
     mutate(Department = ifelse(str_detect(Department, "DEACTIVATED"),
                                gsub('^.{2}|.{12}$', '', Department), 
@@ -244,8 +245,8 @@ process_data <- function(access_data){
 
 
 
-access_raw <- dbGetQuery(con, access_sql)
-
+#access_raw <- dbGetQuery(con, access_sql)
+access_raw <- read.csv("April_12_2022.csv")
 
 process_data_run <- process_data(access_raw)
 data.subset.new <- process_data_run[[1]]
