@@ -215,32 +215,32 @@ process_data <- function(access_data){
 
 
 
-con <- dbConnect(odbc(), Driver = "Oracle",
-                 Host = "msx01-scan.mountsinai.org",
-                 Port = 1521,
-                 SVC = "PRD_MSX_TAF.msnyuhealth.org",
-                 UID = "villea04",
-                 PWD = "villea04123$"
-)
-
-
-access_date_1 <- "2021-01-01"
-access_date_2 <- "2021-08-31"
-
-access_sql <- paste0("SELECT DEP_RPT_GRP_SEVENTEEN,DEPT_SPECIALTY_NAME,DEPARTMENT_NAME,PROV_NAME_WID,DEPARTMENT_ID,REFERRING_PROV_NAME_WID,
-                     MRN,PAT_NAME,ZIP_CODE,BIRTH_DATE,FINCLASS,
-                     APPT_MADE_DTTM,APPT_DTTM,PRC_NAME,APPT_LENGTH,DERIVED_STATUS_DESC,
-                     APPT_CANC_DTTM, CANCEL_REASON_NAME,
-                     SIGNIN_DTTM,PAGED_DTTM,CHECKIN_DTTM,ARVL_LIST_REMOVE_DTTM,
-                     ROOMED_DTTM,FIRST_ROOM_ASSIGN_DTTM,
-                     PHYS_ENTER_DTTM,VISIT_END_DTTM,CHECKOUT_DTTM,
-                     TIME_IN_ROOM_MINUTES,CYCLE_TIME_MINUTES,VIS_NEW_TO_DEP_YN,LOS_NAME,LOS_CODE,
-                     DEP_RPT_GRP_THIRTYONE,APPT_ENTRY_USER_NAME_WID, 
-                     ACCESS_CENTER_SCHEDULED_YN, VISIT_METHOD, VISIT_PROV_STAFF_RESOURCE_C,
-                     PRIMARY_DX_CODE,ENC_CLOSED_CHARGE_STATUS,Y_ENC_COSIGN_TIME,Y_ENC_CLOSE_TIME,Y_ENC_OPEN_TIME, NPI
-FROM CRREPORT_REP.MV_DM_PATIENT_ACCESS
-WHERE CONTACT_DATE BETWEEN TO_DATE('", access_date_1,  "00:00:00', 'YYYY-MM-DD HH24:MI:SS')
-				AND TO_DATE('", access_date_2, "23:59:59', 'YYYY-MM-DD HH24:MI:SS')")
+# con <- dbConnect(odbc(), Driver = "Oracle",
+#                  Host = "msx01-scan.mountsinai.org",
+#                  Port = 1521,
+#                  SVC = "PRD_MSX_TAF.msnyuhealth.org",
+#                  UID = "villea04",
+#                  PWD = "villea04123$"
+# )
+# 
+# 
+# access_date_1 <- "2021-01-01"
+# access_date_2 <- "2021-08-31"
+# 
+# access_sql <- paste0("SELECT DEP_RPT_GRP_SEVENTEEN,DEPT_SPECIALTY_NAME,DEPARTMENT_NAME,PROV_NAME_WID,DEPARTMENT_ID,REFERRING_PROV_NAME_WID,
+#                      MRN,PAT_NAME,ZIP_CODE,BIRTH_DATE,FINCLASS,
+#                      APPT_MADE_DTTM,APPT_DTTM,PRC_NAME,APPT_LENGTH,DERIVED_STATUS_DESC,
+#                      APPT_CANC_DTTM, CANCEL_REASON_NAME,
+#                      SIGNIN_DTTM,PAGED_DTTM,CHECKIN_DTTM,ARVL_LIST_REMOVE_DTTM,
+#                      ROOMED_DTTM,FIRST_ROOM_ASSIGN_DTTM,
+#                      PHYS_ENTER_DTTM,VISIT_END_DTTM,CHECKOUT_DTTM,
+#                      TIME_IN_ROOM_MINUTES,CYCLE_TIME_MINUTES,VIS_NEW_TO_DEP_YN,LOS_NAME,LOS_CODE,
+#                      DEP_RPT_GRP_THIRTYONE,APPT_ENTRY_USER_NAME_WID, 
+#                      ACCESS_CENTER_SCHEDULED_YN, VISIT_METHOD, VISIT_PROV_STAFF_RESOURCE_C,
+#                      PRIMARY_DX_CODE,ENC_CLOSED_CHARGE_STATUS,Y_ENC_COSIGN_TIME,Y_ENC_CLOSE_TIME,Y_ENC_OPEN_TIME, NPI
+# FROM CRREPORT_REP.MV_DM_PATIENT_ACCESS
+# WHERE CONTACT_DATE BETWEEN TO_DATE('", access_date_1,  "00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+# 				AND TO_DATE('", access_date_2, "23:59:59', 'YYYY-MM-DD HH24:MI:SS')")
 
 
 
