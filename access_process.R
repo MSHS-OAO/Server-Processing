@@ -190,7 +190,8 @@ process_data <- function(access_data){
   
   
   #Update cycltime to as.numeric(round(difftime(min(data.subset.new$Visitend.DTTM,Checkout.DTTM),data.subset.new$Checkin.DTTM,units="mins"),1))
-  data.subset.new$cycleTime <- as.numeric(round(difftime(data.subset.new$Visitend.DTTM,data.subset.new$Checkin.DTTM,units="mins"),1)) ## Checkin to Visitend (min)
+  data.subset.new <-  data.subset.new  %>% mutate(min_of_checkout_visit = pmin(Visitend.DTTM,Checkout.DTTM , na.rm = T))
+  data.subset.new$cycleTime <- as.numeric(round(difftime(data.subset.new$min_of_checkout_visit,data.subset.new$Checkin.DTTM,units="mins"),1)) ## Checkin to Visitend (min)
   
   
   
@@ -252,7 +253,7 @@ process_data <- function(access_data){
 
 
 #access_raw <- dbGetQuery(con, access_sql)
-access_raw <- read.csv("April_12_2022.csv")
+access_raw <- read.csv("access_04_12_2022.csv")
 
 process_data_run <- process_data(access_raw)
 data.subset.new <- process_data_run[[1]]
