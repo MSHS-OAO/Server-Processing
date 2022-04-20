@@ -190,7 +190,8 @@ process_data <- function(access_data){
   
   
   #Update cycltime to as.numeric(round(difftime(min(data.subset.new$Visitend.DTTM,Checkout.DTTM),data.subset.new$Checkin.DTTM,units="mins"),1))
-  data.subset.new$cycleTime <- as.numeric(round(difftime(data.subset.new$Visitend.DTTM,data.subset.new$Checkin.DTTM,units="mins"),1)) ## Checkin to Visitend (min)
+  data.subset.new$min_of_checkout_visit_end <- min(data.subset.new$Visitend.DTTM,data.subset.new$Checkout.DTTM)
+  data.subset.new$cycleTime <- as.numeric(round(difftime(data.subset.new$min_of_checkout_visit_end,data.subset.new$Checkin.DTTM,units="mins"),1)) ## Checkin to Visitend (min)
   
   
   
